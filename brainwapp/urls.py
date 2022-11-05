@@ -15,6 +15,8 @@ urlpatterns = [
     path('productdescwriter/', views.productdescwriter, name="productdescwriter"),
     path('namegenerator/', views.namegenerator, name="namegenerator"),
     path('blogideagenerator/', views.blogideagenerator, name="blogideagenerator"),
+    path('paragenerator/', views.paragenerator, name="paragenerator"),
+    path('jokegenerator/', views.jokegenerator, name="jokegenerator"),
     path('createaccount/', views.createaccount, name="createaccount"),
     path('items/', views.items, name="items")
     

@@ -8,7 +8,7 @@ from django.contrib.auth import logout
 from django.contrib.auth import authenticate
 from django.contrib.auth import get_user_model
 
-api_keyy = ("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")
+api_keyy = ("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")
 # Create your views here.
 # Create your views here.
 def index(request):
@@ -112,6 +112,53 @@ def blogideagenerator(request):
     context = {"ans": answer}
     return render(request, 'blogidea.html', context)
 
+def paragenerator(request):
+    
+
+    
+    name = request.POST.get('name')
+    title = request.POST.get('title')
+    keyword = request.POST.get('keyword')
+       
+        
+    api_data = api_keyy
+    openai.api_key = api_data
+
+
+    completion = openai.Completion()
+
+    
+    prompt = (f"Generate paragraph for the provided name, title and keyword  title {title}  topic {name} keyword {keyword}")
+    response = completion.create(prompt=prompt, engine="text-davinci-002", max_tokens=2048)
+    answer = response.choices[0].text.strip()
+
+        
+        
+    context = {"ans": answer}
+    return render(request, 'paragenerator.html', context)
+
+def jokegenerator(request):
+    
+
+    
+    topic = request.POST.get('topic')
+    
+        
+    api_data = api_keyy
+    openai.api_key = api_data
+
+
+    completion = openai.Completion()
+
+    
+    prompt = (f"Generate a joke for the provided topic {topic}")
+    response = completion.create(prompt=prompt, engine="text-davinci-002", max_tokens=2048)
+    answer = response.choices[0].text.strip()
+
+        
+        
+    context = {"ans": answer}
+    return render(request, 'jokesgenerator.html', context)
 
 def contact(request):
     if request.method == "POST":
