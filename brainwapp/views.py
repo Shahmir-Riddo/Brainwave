@@ -6,158 +6,138 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate
-from django.contrib.auth import get_user_model
+from googletrans import Translator
 
-api_keyy = ("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")
+
+translator = Translator()
+
+
+api_keyy = ("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")
 # Create your views here.
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
 
 def blogwriter(request):
-    
+    ans = ""
+    if request.method == "POST":
 
-    
-    topic = request.POST.get('topic')
-    title = request.POST.get('title')
-    keyword = request.POST.get('keyword')
-       
-        
-    api_data = api_keyy
-    openai.api_key = api_data
-
-
-    completion = openai.Completion()
 
     
-    prompt = (f"Generate adequate blog  for the provided blog topic, title and keyword  title {title}  topic {topic} keyword {keyword}")
-    response = completion.create(prompt=prompt, engine="text-davinci-002", max_tokens=2048)
-    answer = response.choices[0].text.strip()
+        topic = request.POST.get('topic')
+        title = request.POST.get('title')
+        keyword = request.POST.get('keyword')
+        lang =  request.POST.get('lang')
+        
+        api_data = api_keyy
+        openai.api_key = api_data
 
+
+        completion = openai.Completion()
+
+    
+        prompt = (f"Generate adequate blog  for the provided blog topic, title and keyword  title {title}  topic {topic} keyword {keyword}")
+        response = completion.create(prompt=prompt, engine="text-davinci-002", max_tokens=2048)
+        answer = response.choices[0].text.strip()
+        result = translator.translate(f'{answer}', dest=f'{lang}')
+        ans = result.text + ans
         
         
-    context = {"ans": answer}
+    context = {"ans": ans}
     return render(request, 'blogwriter.html', context)
 
 def productdescwriter(request):
-    
+    ans = ""
+    if request.method == "POST":
 
-    
-    name = request.POST.get('name')
-    title = request.POST.get('title')
-    keyword = request.POST.get('keyword')
-       
-        
-    api_data = api_keyy
-    openai.api_key = api_data
-
-
-    completion = openai.Completion()
 
     
-    prompt = (f"Generate product description for the provided product name, title and keyword  title {title}  product name {name} keyword {keyword}")
-    response = completion.create(prompt=prompt, engine="text-davinci-002", max_tokens=2048)
-    answer = response.choices[0].text.strip()
+        name = request.POST.get('name')
+        category = request.POST.get('category')
+        keyword = request.POST.get('keyword')
+        lang =  request.POST.get('lang')
+        print(lang)
+        api_data = api_keyy
+        openai.api_key = api_data
 
+
+        completion = openai.Completion()
+
+    
+        prompt = (f"Generate product description for the provided product name, category and keyword  category{category} product name {name} keyword {keyword}")
+        response = completion.create(prompt=prompt, engine="text-davinci-002", max_tokens=2048)
+        answer = response.choices[0].text.strip()
+        result = translator.translate(f'{answer}', dest=f'{lang}')
+    
+        ans = result.text + ans
         
         
-    context = {"ans": answer}
+    context = {"ans" : ans}
+        
+        
     return render(request, 'productdescwriter.html', context)
 
-def namegenerator(request):
-    
-
-    
-    
-    keyword = request.POST.get('keyword')
-       
         
-    api_data = api_keyy
-    openai.api_key = api_data
-
-
-    completion = openai.Completion()
-
-    
-    prompt = (f"Generate business name for the provided keyword {keyword}")
-    response = completion.create(prompt=prompt, engine="text-davinci-002", max_tokens=2048)
-    answer = response.choices[0].text.strip()
-
-        
-        
-    context = {"ans": answer}
-    return render(request, 'namegenerator.html', context)
-
-def blogideagenerator(request):
     
 
-    
-    
-    keyword = request.POST.get('keyword')
-       
-        
-    api_data = api_keyy
-    openai.api_key = api_data
-
-
-    completion = openai.Completion()
-
-    
-    prompt = (f"Generate a blog idea for the provided keyword {keyword}")
-    response = completion.create(prompt=prompt, engine="text-davinci-002", max_tokens=2048)
-    answer = response.choices[0].text.strip()
-
-        
-        
-    context = {"ans": answer}
-    return render(request, 'blogidea.html', context)
 
 def paragenerator(request):
-    
+    ans = ""
+    if request.method == "POST":
 
     
-    name = request.POST.get('name')
-    title = request.POST.get('title')
-    keyword = request.POST.get('keyword')
-       
-        
-    api_data = api_keyy
-    openai.api_key = api_data
+        name = request.POST.get('name')
+ 
+        keyword = request.POST.get('keyword')
+        lang = request.POST.get('lang')
+        print(lang)
+        api_data = api_keyy
+        openai.api_key = api_data
 
 
-    completion = openai.Completion()
+        completion = openai.Completion()
 
     
-    prompt = (f"Generate paragraph for the provided name, title and keyword  title {title}  topic {name} keyword {keyword}")
-    response = completion.create(prompt=prompt, engine="text-davinci-002", max_tokens=2048)
-    answer = response.choices[0].text.strip()
-
+        prompt = (f"Generate paragraph for the provided topic and keyword   topic {name} keyword {keyword}")
+        response = completion.create(prompt=prompt, engine="text-davinci-002", max_tokens=2048)
+        answer = response.choices[0].text.strip()
+   
         
         
-    context = {"ans": answer}
+        result = translator.translate(f'{answer}', dest=f'{lang}')
+   
+        ans = result.text + ans
+        
+        
+    context = {"ans" : ans}
     return render(request, 'paragenerator.html', context)
 
-def jokegenerator(request):
-    
+def emailgenerator(request):
+    ans = ""
+    if request.method == "POST":
 
     
-    topic = request.POST.get('topic')
+        topic = request.POST.get('topic')
+        keyword = request.POST.get('keyword')
     
         
-    api_data = api_keyy
-    openai.api_key = api_data
+        api_data = api_keyy
+        openai.api_key = api_data
 
 
-    completion = openai.Completion()
+        completion = openai.Completion()
 
     
-    prompt = (f"Generate a joke for the provided topic {topic}")
-    response = completion.create(prompt=prompt, engine="text-davinci-002", max_tokens=2048)
-    answer = response.choices[0].text.strip()
-
+        prompt = (f"Generate a email for the provided topic and keyword, topic {topic} keyword {keyword}")
+        response = completion.create(prompt=prompt, engine="text-davinci-002", max_tokens=2048)
+        answer = response.choices[0].text.strip()
+        result = translator.translate(f'{answer}', dest='bn')
+        ans = result.text + ans
         
         
-    context = {"ans": answer}
+    context = {"ans" : ans}
+        
+        
     return render(request, 'jokesgenerator.html', context)
 
 def contact(request):

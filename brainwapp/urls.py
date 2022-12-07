@@ -13,10 +13,8 @@ urlpatterns = [
     path('profile/', views.profile, name="profile"),
     path('createaccount/', views.createaccount, name="createaccount"),
     path('productdescwriter/', views.productdescwriter, name="productdescwriter"),
-    path('namegenerator/', views.namegenerator, name="namegenerator"),
-    path('blogideagenerator/', views.blogideagenerator, name="blogideagenerator"),
     path('paragenerator/', views.paragenerator, name="paragenerator"),
-    path('jokegenerator/', views.jokegenerator, name="jokegenerator"),
+    path('emailgenerator/', views.emailgenerator, name="emailgenerator"),
     path('createaccount/', views.createaccount, name="createaccount"),
     path('items/', views.items, name="items")
     

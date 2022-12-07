@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 {% block body %}
 
@@ -10,12 +9,7 @@
     <div class="container">
         <div class="row vh-md-100">
             <div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center">
-                {% if user.is_authenticated %}
-                
                 <h1 class="heading-black text-capitalize">Welcome, {{user}}</h1>
-                {% else %}
-                <h1 class="heading-black text-capitalize">Welcome, User</h1>
-                {% endif %}
                 <h1 class="heading-black text-capitalize">Meet Brainwave AI</h1>
                 <p class="lead py-3">Your personal assistant for creating high-quality content.</p>
                 <button onclick="location.href='#items';" value class="btn btn-primary d-inline-flex flex-row align-items-center">
@@ -23,13 +17,17 @@
                     <em class="ml-2" data-feather="arrow-right"></em>
                 </button>
                 {% if user.is_authenticated %}
-                <button onclick="location.href='/logout';" class="btn btn-primary d-inline-flex flex-row align-items-center">
+                <button onclick="location.href='/logout';" href="/logout" class="btn btn-primary d-inline-flex flex-row align-items-center">
                     Logout
                     <em class="ml-2" data-feather="arrow-right"></em>
+                    
+                </button>
                 {% else %}
+               
                 <button onclick="location.href='/login';" href="/login" class="btn btn-primary d-inline-flex flex-row align-items-center">
                     Login
-                    <em class="ml-2" data-feather="arrow-right"></em>    
+                    <em class="ml-2" data-feather="arrow-right"></em>
+                    
                 </button>
                 {% endif %}
             </div>
@@ -159,7 +157,7 @@
                     </div>
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="card-title pt-3">AI Business Name Generator</h3>
+                            <h3 class="card-title pt-3">Email Generator</h3>
                             <h2 class="card-title text-info mb-0 pt-4">Free</h2>
                             <div class="text-muted font-weight-medium mt-2">for this month</div>
                             <ul class="list-unstyled pricing-list">
@@ -170,35 +168,13 @@ This name generator AI will help you create unique and interesting names for you
 
                                </p>
                             </ul>
-                            <a href="/namegenerator" class="btn btn-info">
+                            <a href="/emailgenerator" class="btn btn-info">
                             Get Started
                             </a>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <h3 class="card-title pt-3">AI Blog Topic Generator</h3>
-                            <h2 class="card-title text-info mb-0 pt-4">Free</h2>
-                            <div class="text-muted font-weight-medium mt-2">for this month</div>
-                            <ul class="list-unstyled pricing-list">
-                               <p>
-                               
-If you're looking for ideas for blog topics, look no further! 
-The Blog Topic Generator can help you come up with ideas for topics to write about. 
-
-                            </p>
-                            </ul>
-                            <a href="/blogideagenerator" class="btn btn-info">
-                            Get Started
-                            </a>
-                        </div>
-                       
-                    </div>
+            
                     
-                    <button onclick="location.href='/items';" href="/login" class="btn btn-primary d-inline-flex flex-row align-items-center">
-                        More
-                        <em class="ml-2" data-feather="arrow-right"></em>    
-                    </button>
                     
                 </div>
             </div>
@@ -225,8 +201,9 @@ The Blog Topic Generator can help you come up with ideas for topics to write abo
         <div class="row mt-5">
             <div class="col-md-8 col-12 divider top-divider mx-auto pt-5 text-center">
                 <h3>Try Brainwave free for 30 days</h3>
-                <p class="mb-4">it's incredibly helpful, as long as you spend some time learning how it works.</p>
-                <button onclick="location.href='/createaccount';" class="btn btn-primary">
+                <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisi commodo,
+                    tempus odio a, vestibulum nibh.</p>
+                <button class="btn btn-primary">
                     Create your account
                 </button>
             </div>
@@ -370,5 +347,4 @@ The Blog Topic Generator can help you come up with ideas for topics to write abo
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
 </html>
-
-{% endblock body %}
+{% endblock %}
